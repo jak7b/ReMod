@@ -3,8 +3,8 @@ package net.kuko.redmod
 import net.fabricmc.api.ModInitializer
 import org.slf4j.LoggerFactory
 
-object MyIdeasIdkSo : ModInitializer {
-    private val logger = LoggerFactory.getLogger("redmod")
+object RedMod : ModInitializer {
+    private val logger  = LoggerFactory.getLogger("redmod")
 
 	override fun onInitialize() {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.

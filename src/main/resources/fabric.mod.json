@@ -2,28 +2,27 @@
 	"schemaVersion": 1,
 	"id": "redmod",
 	"version": "${version}",
-	"name": "my ideas idk so",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"name": "Red Mod",
+	"description": "This mod just serves to store my godawful mod ideas.",
 	"authors": [
-		"Me!"
+		"jak7b (kuko010/kuko.a)"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/redmod/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
 			{
-				"value": "net.kuko.redmod.MyIdeasIdkSo",
+				"value": "net.kuko.redmod.RedMod",
 				"adapter": "kotlin"
 			}
 		],
 		"fabric-datagen": [
 			{
-				"value": "net.kuko.redmod.MyIdeasIdkSoDataGenerator",
+				"value": "net.kuko.redmod.RedModDataGenerator",
 				"adapter": "kotlin"
 			}
 		]
