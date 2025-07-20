@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "redmod",
+	"id": "remod",
 	"version": "${version}",
 	"name": "Red Mod",
 	"description": "This mod just serves to store my godawful mod ideas.",
@@ -8,21 +8,21 @@
 		"jak7b (kuko010/kuko.a)"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
+		"homepage": "https://fabricmc.net/"
 	},
 	"license": "MIT",
-	"icon": "assets/redmod/icon.png",
+	"icon": "assets/remod/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
 			{
-				"value": "net.kuko.redmod.RedMod",
+				"value": "net.kuko.remod.ReMod",
 				"adapter": "kotlin"
 			}
 		],
 		"fabric-datagen": [
 			{
-				"value": "net.kuko.redmod.RedModDataGenerator",
+				"value": "net.kuko.remod.ReModDataGenerator",
 				"adapter": "kotlin"
 			}
 		]
