@@ -22,13 +22,14 @@ object ReMod : ModInitializer {
  *
  * ? Features outline:
  * - Obtain molten metals by crafting a lava bucket with a block of the metal.
+ * todo: make this crap
+ *
  * - Use a Mold Table with a GUI to combine molten metal buckets with molds,
  *   producing items and returning the empty bucket and a damaged mold (molds have durability).
  * - Use an Assembly Station to upgrade armor, weapons, or tools by applying crafted parts,
  *   granting special abilities or enhancements.
  *
  * * Example workflow:
- * TODO: This is first to be done:
  *? 1. Crafting molten metal:
  *    - Input: Block of Steel + Lava Bucket
  *    - Output: Bucket of Molten Steel
@@ -38,7 +39,7 @@ object ReMod : ModInitializer {
  *    - Output: Spring + Empty Bucket + Damaged Spring Mold
  *
  *? 3. Assembly Station upgrade:
- *    - Right-click Netherite Boots with Spring
+ *   - Right-click Netherite Boots with Spring
  *    - Output: Spring Boots (boots gain ability to launch the player a few blocks into the air)
  *
  * ? Planned additional features:

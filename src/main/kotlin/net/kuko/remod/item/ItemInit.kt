@@ -10,12 +10,7 @@ import net.minecraft.util.Identifier
 
 
 object ItemInit {
-
-
-
-
-
-
+    val EXAMPLE_BUCKET : Item = registerItem("example_bucket", test(FabricItemSettings()))
 
     fun registerItem(name: String, item: Item): Item = Registry.register(Registries.ITEM,
         Identifier.of(ReMod.MOD_ID, name), item
