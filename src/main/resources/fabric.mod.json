@@ -2,8 +2,8 @@
 	"schemaVersion": 1,
 	"id": "remod",
 	"version": "${version}",
-	"name": "Red Mod",
-	"description": "This mod just serves to store my godawful mod ideas.",
+	"name": "ReMod",
+	"description": "It can mean anything",
 	"authors": [
 		"jak7b (kuko010/kuko.a)"
 	],
@@ -20,6 +20,12 @@
 				"adapter": "kotlin"
 			}
 		],
+		"client": [
+			{
+				"value": "net.kuko.remod.ReModClient",
+				"adapter": "kotlin"
+			}
+		],
 		"fabric-datagen": [
 			{
 				"value": "net.kuko.remod.ReModDataGenerator",
@@ -28,7 +34,7 @@
 		]
 	},
 	"mixins": [
-
+		"remod.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.16.14",

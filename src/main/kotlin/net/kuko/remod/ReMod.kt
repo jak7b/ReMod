@@ -1,7 +1,7 @@
 package net.kuko.remod
 
 import net.fabricmc.api.ModInitializer
-import net.kuko.remod.item.ItemInit
+import net.kuko.remod.init.ItemInit
 import org.slf4j.LoggerFactory
 
 object ReMod : ModInitializer {
