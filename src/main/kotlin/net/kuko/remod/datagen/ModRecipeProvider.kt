@@ -17,12 +17,12 @@ import java.util.function.Consumer
 class ModRecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
     override fun generate(exporter: Consumer<RecipeJsonProvider>) {
 
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ItemInit.CUSTOM_BUCKET, 1)
-            .input(Items.LAVA_BUCKET)
-            .input(Items.IRON_BLOCK)
-            .criterion(hasItem(Items.LAVA_BUCKET), conditionsFromItem(Items.LAVA_BUCKET))
-            .criterion(hasItem(Items.IRON_BLOCK), conditionsFromItem(Items.IRON_BLOCK))
-            .offerTo(exporter, Identifier(getRecipeName(ItemInit.CUSTOM_BUCKET)))
+//        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ItemInit.CUSTOM_BUCKET, 1)
+//            .input(Items.LAVA_BUCKET)
+//            .input(Items.IRON_BLOCK)
+//            .criterion(hasItem(Items.LAVA_BUCKET), conditionsFromItem(Items.LAVA_BUCKET))
+//            .criterion(hasItem(Items.IRON_BLOCK), conditionsFromItem(Items.IRON_BLOCK))
+//            .offerTo(exporter, Identifier(getRecipeName(ItemInit.CUSTOM_BUCKET)))
 
     }
 
