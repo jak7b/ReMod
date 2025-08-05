@@ -2,7 +2,6 @@ package net.kuko.remod.block.custom
 
 import net.kuko.remod.block.entity.PedestalBlockEntity
 import net.kuko.remod.init.BlockInit
-import net.kuko.remod.init.ItemInit
 import net.minecraft.block.*
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.block.entity.BlockEntityTicker
