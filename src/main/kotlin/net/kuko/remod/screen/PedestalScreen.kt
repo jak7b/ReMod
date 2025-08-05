@@ -21,7 +21,7 @@ class PedestalScreen(handler: PedestalScreenHandler,
     }
 
     override fun drawBackground(
-        context: DrawContext?,
+        context: DrawContext ,
         delta: Float,
         mouseX: Int,
         mouseY: Int
@@ -29,8 +29,14 @@ class PedestalScreen(handler: PedestalScreenHandler,
         RenderSystem.setShader(GameRenderer::getPositionTexProgram)
         RenderSystem.setShaderColor(1f,1f,1f, 1f)
         RenderSystem.setShaderTexture(0, TEXTURE)
-        var x = (width - backgroundWidth) / 2
-        var y = (height - backgroundHeight) / 2
-        context?.drawTexture(TEXTURE, x, y, 0, 0, backgroundWidth, backgroundHeight)
+        val x = (width - backgroundWidth) / 2
+        val y = (height - backgroundHeight) / 2
+        context .drawTexture(TEXTURE, x, y, 0, 0, backgroundWidth, backgroundHeight)
+    }
+
+    override fun render(context: DrawContext , mouseX: Int, mouseY: Int, delta: Float) {
+        renderBackground(context)
+        super.render(context, mouseX, mouseY, delta)
+        drawMouseoverTooltip(context, mouseX, mouseY)
     }
 }

@@ -5,11 +5,14 @@ import net.kuko.remod.init.BlockInit
 import net.kuko.remod.init.ItemInit
 import net.minecraft.block.*
 import net.minecraft.block.entity.BlockEntity
+import net.minecraft.block.entity.BlockEntityTicker
+import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.ItemStack
 import net.minecraft.screen.NamedScreenHandlerFactory
 import net.minecraft.sound.SoundCategory
 import net.minecraft.sound.SoundEvents
+import net.minecraft.text.Text
 import net.minecraft.util.ActionResult
 import net.minecraft.util.Hand
 import net.minecraft.util.ItemScatterer
@@ -42,9 +45,6 @@ class PedestalBlock public constructor(settings: Settings) : BlockWithEntity(set
             super.onStateReplaced(state, world, pos, newState, moved)
         }
     }
-
-
-
     @Deprecated("Deprecated in Java")
     override fun onUse(
         state: BlockState,
@@ -54,41 +54,48 @@ class PedestalBlock public constructor(settings: Settings) : BlockWithEntity(set
         hand: Hand,
         hit: BlockHitResult
     ): ActionResult {
-        val stack: ItemStack = player.getStackInHand(hand) // Wat does this return? (Case when there is no exlipic type.)
-        // This returns ItemStack (stack)
-            (world.getBlockEntity(pos) as? PedestalBlockEntity)?.let { pedestal ->
-                if (!world.isClient) {
-                    val screenHandlerFactory: NamedScreenHandlerFactory =
-                        world.getBlockEntity(pos) as PedestalBlockEntity
+        val stack: ItemStack = player.getStackInHand(hand)
 
-                    if (pedestal.isEmpty && !stack.isEmpty) {
+        (world.getBlockEntity(pos) as? PedestalBlockEntity)?.let { pedestal ->
+            if (!world.isClient) {
+                when {
+                    // Place item on empty pedestal
+                    pedestal.isEmpty && !stack.isEmpty -> {
                         pedestal.setStack(0, stack.copyWithCount(1))
-                        world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1f, 2f)
+                        world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1f, 2f)
                         stack.decrement(1)
 
                         pedestal.markDirty()
                         world.updateListeners(pos, state, state, 0)
 
+                        val item = pedestal.getDisplayItem().item.name.toString()
+                        player.sendMessage(Text.literal(item), false)
+
                     }
-                    else if (stack.isEmpty && !player.isSneaking) {
+
+                    // Take item from pedestal (not sneaking)
+                    !pedestal.isEmpty && stack.isEmpty && !player.isSneaking -> {
                         val stackOnPedestal: ItemStack = pedestal.getStack(0)
-                        player.setStackInHand(Hand.MAIN_HAND, stackOnPedestal)
-                        world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1f, 1f)
+                        player.setStackInHand(hand, stackOnPedestal) // Fixed: use 'hand' parameter
+                        world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1f, 1f)
                         pedestal.clear()
 
                         pedestal.markDirty()
                         world.updateListeners(pos, state, state, 0)
                     }
-                    // If player has no item, and, enitity has no item, and player is no sneaking
-                    else if (stack.isEmpty && pedestal.isEmpty() && !player.isSneaking) {
-                        (screenHandlerFactory).let {
-                            player.openHandledScreen(it)
-                        }
+
+                    // Open GUI when sneaking with empty hands on empty pedestal
+                    pedestal.isEmpty && stack.isEmpty && player.isSneaking -> {
+                        val screenHandlerFactory: NamedScreenHandlerFactory =
+                            world.getBlockEntity(pos) as PedestalBlockEntity
+                        player.openHandledScreen(screenHandlerFactory)
                     }
                 }
             }
+        }
+
         return ActionResult.SUCCESS
     }
 
-    
+
 }

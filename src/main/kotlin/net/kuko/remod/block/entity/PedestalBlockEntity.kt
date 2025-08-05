@@ -2,6 +2,7 @@ package net.kuko.remod.block.entity
 
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory
 import net.kuko.remod.init.BlockEntitiesInit
+import net.kuko.remod.screen.PedestalScreenHandler
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.block.entity.BlockEntityType
@@ -40,8 +41,6 @@ class PedestalBlockEntity(
         return inventory
     }
 
-    // Kotlin requires explicit override of this Java method, even if unused.
-    // Needed for proper Java -> Kotlin interop; no-op implementation is fine here.
     override fun markDirty() {}
 
     override fun getDisplayName(): Text {
@@ -71,6 +70,22 @@ class PedestalBlockEntity(
         playerInventory: PlayerInventory,
         player: PlayerEntity
     ): ScreenHandler? {
-        return null
+        return PedestalScreenHandler(syncId, playerInventory, this)
+    }
+
+    // Get the item in the pedestal
+    fun getDisplayItem(): ItemStack {
+        return inventory[INPUT_SLOT]
+    }
+
+    // Get full NBT data
+    fun getNbtData(): NbtCompound {
+        return createNbt()
+    }
+
+    // Get specific NBT value (example)
+    fun getCustomProperty(key: String): String {
+        val nbt = createNbt()
+        return nbt.getString(key)
     }
 }
