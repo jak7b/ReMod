@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "remod:block/pedestal"
+    }
+  }
+}

@@ -3,7 +3,8 @@
   "package": "net.kuko.remod.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "ExampleMixin"
+    "ExampleMixin",
+    "OreAlchemyPickaxeMixin"
   ],
   "injectors": {
     "defaultRequire": 1
